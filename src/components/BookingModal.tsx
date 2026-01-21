@@ -5,7 +5,7 @@ import {
   X, Calendar, Clock, CheckCircle, ChevronLeft, 
   CreditCard, DollarSign, Smartphone, AlertCircle, Check 
 } from 'lucide-react';
-import { Professional, Service } from '@/types';
+import { Professional, Service } from '../types';
 
 // Paleta de Cores
 const colors = {
