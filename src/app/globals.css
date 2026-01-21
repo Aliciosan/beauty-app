@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Paleta de Cores DELLAS BEAUTY */
+  --color-rose-nude-bg: #fceae8;      /* Fundo principal claro */
+  --color-rose-accent-light: #fae1dd; /* Fundo para ícones/botões secundários */
+  --color-copper-gold: #c98a7d;       /* Cor primária (textos, ícones) */
+  --color-copper-gold-dark: #a87367;  /* Cor para hover ou destaque maior */
+  --color-copper-pop: #e69c8f;        /* Cor de destaque (botões, badges) */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Aplica a cor de fundo em todo o site */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-rose-nude-bg);
+  color: var(--color-copper-gold-dark);
+  font-family: var(--font-inter), sans-serif; /* Garante a fonte padrão */
+}
+
+/* Utilitário para esconder barra de rolagem (usado na lista de salões) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
