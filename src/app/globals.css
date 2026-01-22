@@ -24,3 +24,26 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Evita scroll lateral e remove comportamento de elástico no iOS */
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  overscroll-behavior-y: none; /* Evita o 'bounce' ao rolar tudo pra baixo */
+}
+
+/* Esconde a barra de rolagem mas mantém o scroll */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Ajuste para inputs não darem zoom automático no iPhone */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

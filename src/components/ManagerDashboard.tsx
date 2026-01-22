@@ -7,7 +7,7 @@ import {
   Clock, Search, Loader2, MapPin, MessageSquare, Send, Bell, BellOff, Menu 
 } from 'lucide-react';
 import { useForm, useFieldArray, useWatch, Control, UseFormRegister } from 'react-hook-form';
-import { CompanyData, Appointment } from '@/types'; 
+import { CompanyData, Appointment } from '../types'; 
 
 type Message = { id: number; text: string; sender: 'client' | 'manager'; timestamp: string; };
 
