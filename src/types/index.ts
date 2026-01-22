@@ -1,3 +1,5 @@
+// src/types/index.ts
+
 export interface Service {
   id: string | number;
   name: string;
