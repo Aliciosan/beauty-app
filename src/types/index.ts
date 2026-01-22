@@ -1,6 +1,4 @@
-// src/types/index.ts
-
-// 1. Tipos Básicos
+// Definição de um Serviço prestado por um profissional
 export interface Service {
   id: string | number;
   name: string;
@@ -8,6 +6,7 @@ export interface Service {
   duration: string;
 }
 
+// Definição de um Profissional e seus dados
 export interface Professional {
   id: string | number;
   name: string;
@@ -19,7 +18,7 @@ export interface Professional {
   services?: Service[];
 }
 
-// 2. Tipos que estavam faltando (CompanyData e Appointment)
+// Definição de um Agendamento
 export interface Appointment {
   id: number;
   salon: string;
@@ -30,6 +29,7 @@ export interface Appointment {
   clientName?: string;
 }
 
+// Definição do Endereço da empresa
 export interface Address {
   street: string;
   number: string;
@@ -37,9 +37,10 @@ export interface Address {
   zip: string;
 }
 
+// Definição dos Dados da Empresa (usado no Dashboard)
 export interface CompanyData {
   address: Address;
   gallery: string[];
   professionals: Professional[];
-  hours?: any;
+  hours?: any; // Objeto com os horários de cada dia
 }
