@@ -47,3 +47,17 @@ html, body {
     font-size: 16px !important;
   }
 }
+
+/* src/app/globals.css - Adicione no final do arquivo */
+
+html, body {
+  overflow-x: hidden; /* Impede scroll lateral indesejado */
+  overscroll-behavior-y: none; /* Remove efeito elástico no topo/fundo da página */
+}
+
+/* Ajuste para inputs não darem zoom automático no iPhone ao clicar */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

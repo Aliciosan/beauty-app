@@ -1,6 +1,3 @@
-// src/types/index.ts
-
-// 1. Tipos Básicos
 export interface Service {
   id: string | number;
   name: string;
@@ -19,7 +16,6 @@ export interface Professional {
   services?: Service[];
 }
 
-// 2. Tipos que estavam faltando (CompanyData e Appointment)
 export interface Appointment {
   id: number;
   salon: string;
