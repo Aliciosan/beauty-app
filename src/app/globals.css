@@ -1,48 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  /* --- PALETA DE CORES DELLAS BEAUTY --- */
-  /* Definidas como variáveis CSS padrão para compatibilidade */
-  --color-rose-nude-bg: #FFF8F6;      /* Fundo principal claro */
-  --color-rose-accent-light: #fae1dd; /* Fundo secundário */
-  --color-copper-gold: #C68D7D;       /* Cor primária (Botões, Ícones) */
-  --color-copper-gold-dark: #a87367;  /* Cor para hover */
-  --color-copper-pop: #e66c4f;        /* Destaque */
-
-  /* Cores padrão do sistema */
-  --foreground-rgb: 74, 74, 74;
+@theme {
+  /* Paleta de Cores DELLAS BEAUTY */
+  --color-rose-nude-bg: #fceae8;      /* Fundo principal claro */
+  --color-rose-accent-light: #fae1dd; /* Fundo para ícones/botões secundários */
+  --color-copper-gold: #c98a7d;       /* Cor primária (textos, ícones) */
+  --color-copper-gold-dark: #a87367;  /* Cor para hover ou destaque maior */
+  --color-copper-pop: #e69c8f;        /* Cor de destaque (botões, badges) */
 }
 
+/* Aplica a cor de fundo em todo o site */
 body {
-  color: #4A4A4A;
-  background: var(--color-rose-nude-bg);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-rose-nude-bg);
+  color: var(--color-copper-gold-dark);
+  font-family: var(--font-inter), sans-serif; /* Garante a fonte padrão */
 }
 
-/* --- CORREÇÕES DE LAYOUT PARA CELULAR --- */
+/* Utilitário para esconder barra de rolagem (usado na lista de salões) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-/* 1. Impede a tela de "dançar" para os lados no iPhone e Android */
+/* Evita scroll lateral e remove comportamento de elástico no iOS */
 html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  overscroll-behavior-y: none; /* Remove efeito elástico no scroll */
-  position: relative;
+  overflow-x: hidden; /* Impede scroll lateral indesejado */
+  overscroll-behavior-y: none; /* Remove efeito elástico no topo/fundo da página */
 }
 
-/* 2. Impede Zoom automático em inputs no iPhone ao clicar */
-@media screen and (max-width: 768px) {
-  input, select, textarea {
-    font-size: 16px !important; /* Tamanho seguro para iOS */
-  }
-}
-
-/* 3. Utilitário para esconder a barra de rolagem (mas manter o scroll) */
+/* Esconde a barra de rolagem mas mantém o scroll */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+/* Ajuste para inputs não darem zoom automático no iPhone ao clicar */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+
