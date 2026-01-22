@@ -70,12 +70,13 @@ export default function BookingModal({ professional, onClose, onBookingSuccess }
   };
 
   return (
+    // Modal com fundo escuro e desfoque
     <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       
-      {/* Modal / Bottom Sheet */}
+      {/* Container do Modal (Bottom Sheet no Mobile) */}
       <div className="bg-white w-full h-[90dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-md rounded-t-[30px] sm:rounded-[24px] shadow-2xl flex flex-col relative overflow-hidden">
         
-        {/* Header */}
+        {/* --- HEADER --- */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100 bg-white z-10 shrink-0">
           <div className="flex items-center gap-3">
             {step > 1 && step < 4 && (
@@ -95,21 +96,21 @@ export default function BookingModal({ professional, onClose, onBookingSuccess }
           </button>
         </div>
 
-        {/* Barra de Progresso */}
+        {/* --- BARRA DE PROGRESSO --- */}
         {step < 4 && (
           <div className="h-1.5 w-full bg-gray-100 shrink-0">
             <div className="h-full transition-all duration-500 ease-out rounded-r-full" style={{ width: `${step * 33.3}%`, backgroundColor: colors.primary }}></div>
           </div>
         )}
 
-        {/* Conteúdo com Scroll */}
+        {/* --- CONTEÚDO COM SCROLL --- */}
         <div className="flex-1 overflow-y-auto overflow-x-hidden p-6 pb-32 scrollbar-thin scrollbar-thumb-gray-200">
           
           {step === 1 && (
             <div className="space-y-6 animate-in slide-in-from-right-10 duration-300">
               <div className="p-4 rounded-2xl flex items-center gap-4 bg-gradient-to-r from-[#FFF8F6] to-white border border-[#FCE4DE]">
                 <div className="w-16 h-16 rounded-full border-2 border-white shadow-md bg-white overflow-hidden flex items-center justify-center shrink-0">
-                   {professional.image ? <img src={professional.image} className="w-full h-full object-cover" /> : <span className="font-bold text-2xl" style={{ color: colors.primary }}>{professional.name.charAt(0)}</span>}
+                   {professional.image ? <img src={professional.image} className="w-full h-full object-cover" alt="Profissional"/> : <span className="font-bold text-2xl" style={{ color: colors.primary }}>{professional.name.charAt(0)}</span>}
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider mb-1">Profissional</p>
@@ -227,7 +228,7 @@ export default function BookingModal({ professional, onClose, onBookingSuccess }
           )}
         </div>
 
-        {/* Footer */}
+        {/* --- FOOTER FIXO --- */}
         {step < 4 && (
           <div className="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur-sm border-t border-gray-100 p-6 z-20 pb-safe-area">
             {step === 1 && selectedServices.length > 0 && (
