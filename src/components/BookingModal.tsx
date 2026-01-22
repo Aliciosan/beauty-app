@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { 
   X, ChevronLeft, CreditCard, DollarSign, Smartphone, AlertCircle, Check, CheckCircle
 } from 'lucide-react';
-import { Professional, Service } from '@/types';
+import { Professional, Service } from '../types';
 
 const colors = {
   primary: '#C68D7D', 
@@ -70,14 +70,14 @@ export default function BookingModal({ professional, onClose, onBookingSuccess }
   };
 
   return (
-    // Z-INDEX ALTO E BACKDROP BLUR PARA FOCO TOTAL
-    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-md animate-in fade-in duration-300">
+    // Z-INDEX ALTO E BACKDROP BLUR
+    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       
-      {/* CONTAINER PRINCIPAL: Altura dinâmica (dvh) para mobile */}
-      <div className="bg-white w-full h-[95dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-md rounded-t-[30px] sm:rounded-[24px] shadow-2xl flex flex-col relative overflow-hidden">
+      {/* CONTAINER PRINCIPAL: Altura dinâmica (dvh) para mobile (Bottom Sheet) */}
+      <div className="bg-white w-full h-[90dvh] sm:h-auto sm:max-h-[85vh] sm:max-w-md rounded-t-[30px] sm:rounded-[24px] shadow-2xl flex flex-col relative overflow-hidden">
         
         {/* --- HEADER --- */}
-        <div className="flex justify-between items-center px-6 py-5 border-b border-gray-100 bg-white z-10 shrink-0">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100 bg-white z-10 shrink-0">
           <div className="flex items-center gap-3">
             {step > 1 && step < 4 && (
               <button onClick={handlePrevStep} className="p-2 -ml-2 text-gray-400 hover:text-gray-800 rounded-full active:bg-gray-100">
