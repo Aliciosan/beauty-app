@@ -33,20 +33,20 @@ const ProfessionalServices = ({ nestIndex, control, register }: { nestIndex: num
       </label>
       <div className="space-y-3">
         {fields.map((item, k) => (
-          // Mobile: Coluna vertical | Desktop: Linha horizontal
-          <div key={item.id} className="flex flex-col sm:flex-row gap-2 sm:items-center bg-white sm:bg-transparent p-3 sm:p-0 rounded-lg border sm:border-0 border-indigo-100 shadow-sm sm:shadow-none">
+          // Mobile: Stack vertical | Desktop: Linha horizontal
+          <div key={item.id} className="flex flex-col sm:flex-row gap-2 sm:items-center bg-white sm:bg-transparent p-2 sm:p-0 rounded-lg border sm:border-0 border-indigo-100 shadow-sm sm:shadow-none">
             <input {...register(`professionals.${nestIndex}.services.${k}.name`)} placeholder="Nome (ex: Corte)" className="flex-grow p-2 text-sm border rounded-lg w-full" />
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex gap-2">
                 <input {...register(`professionals.${nestIndex}.services.${k}.price`)} type="number" placeholder="Preço" className="w-1/2 sm:w-24 p-2 text-sm border rounded-lg" />
                 <input {...register(`professionals.${nestIndex}.services.${k}.duration`)} placeholder="Tempo" className="w-1/2 sm:w-24 p-2 text-sm border rounded-lg" />
-                <button type="button" onClick={() => remove(k)} className="text-red-400 p-2 hover:bg-red-50 rounded-lg border sm:border-0 border-red-100 bg-red-50 sm:bg-transparent flex justify-center items-center">
+                <button type="button" onClick={() => remove(k)} className="text-red-400 p-2 hover:bg-red-50 rounded-lg border sm:border-0 border-red-100 bg-red-50 sm:bg-transparent">
                   <Trash2 size={16}/>
                 </button>
             </div>
           </div>
         ))}
       </div>
-      <button type="button" onClick={() => append({ id: Date.now(), name: '', price: 0, duration: '' })} className="mt-3 text-xs font-bold text-indigo-600 flex items-center gap-1 hover:underline p-2 w-full sm:w-auto justify-center sm:justify-start">
+      <button type="button" onClick={() => append({ id: Date.now(), name: '', price: 0, duration: '' })} className="mt-3 text-xs font-bold text-indigo-600 flex items-center gap-1 hover:underline p-2">
         <Plus size={14}/> Adicionar Serviço
       </button>
     </div>
@@ -153,7 +153,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
   return (
     <div className="min-h-screen bg-[#F9FAFB] flex flex-col md:flex-row font-sans text-gray-800">
       
-      {/* HEADER MOBILE */}
+      {/* HEADER MOBILE (Fixo no topo) */}
       <div className="md:hidden bg-white px-4 py-3 border-b flex justify-between items-center sticky top-0 z-50 shadow-sm">
          <div className="font-bold text-indigo-900 flex items-center gap-2">
            <div className="w-8 h-8 bg-indigo-600 rounded-lg text-white flex items-center justify-center">D</div> Dellas
@@ -163,7 +163,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
          </button>
       </div>
 
-      {/* SIDEBAR */}
+      {/* SIDEBAR (Comportamento Mobile e Desktop) */}
       <aside className={`
         fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-100 transform transition-transform duration-300
         ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} 
@@ -173,6 +173,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
             <div className="font-bold text-indigo-900 text-xl mb-8 flex items-center gap-2 hidden md:flex">
                 <div className="w-8 h-8 bg-indigo-600 rounded-lg text-white flex items-center justify-center">D</div> Dellas Admin
             </div>
+
             <nav className="space-y-2 flex-grow">
             <button onClick={() => {setActiveView('overview'); setMobileMenuOpen(false);}} className={`w-full text-left p-3 rounded-lg flex items-center gap-3 font-medium transition-all ${activeView === 'overview' ? 'bg-indigo-50 text-indigo-700' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'}`}>
                 <LayoutDashboard size={20}/> Visão Geral
@@ -185,11 +186,14 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
                 {unreadCount > 0 && notifEnabled && <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{unreadCount}</span>}
             </button>
             </nav>
+
             <button onClick={onLogout} className="w-full flex justify-center gap-2 p-3 mt-auto bg-red-50 text-red-600 rounded-lg font-bold hover:bg-red-100 transition-all border border-red-100 text-sm">
                 <LogOut size={18}/> Sair
             </button>
         </div>
       </aside>
+
+      {/* OVERLAY para fechar menu ao clicar fora no mobile */}
       {mobileMenuOpen && <div onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-black/20 z-30 md:hidden" />}
 
       {/* Main Content */}
@@ -205,6 +209,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
         <main className="flex-1 overflow-y-auto p-4 md:p-8 scrollbar-hide pb-24 md:pb-8">
           {activeView === 'overview' && (
             <div className="space-y-6 md:space-y-8 animate-in fade-in duration-500">
+              {/* Cards de Resumo */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="bg-white p-5 md:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center gap-5">
                   <div className="w-12 h-12 bg-green-50 rounded-full flex justify-center items-center text-green-600"><DollarSign size={24}/></div>
@@ -249,6 +254,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
 
           {activeView === 'settings' && (
             <div className="bg-white rounded-2xl border border-gray-200 p-4 md:p-8 space-y-6 md:space-y-8 animate-in fade-in shadow-sm pb-24">
+                  {/* Tabs Scrollable no Mobile */}
                   <div className="flex border-b border-gray-100 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
                     {[{id:'info', label:'Endereço'}, {id:'hours', label:'Horários'}, {id:'team', label:'Equipe'}, {id:'photos', label:'Galeria'}].map((t:any) => (
                       <button key={t.id} onClick={() => setSettingsTab(t.id)} className={`flex-1 py-3 md:py-4 px-4 whitespace-nowrap border-b-2 font-medium transition-all ${settingsTab === t.id ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-400 hover:text-gray-600'}`}>{t.label}</button>
@@ -323,6 +329,7 @@ export default function ManagerDashboard({ onLogout, currentData, onUpdateData, 
                     </div>
                   )}
                   
+                  {/* Botão Salvar Fixo no Mobile */}
                   <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-100 z-30 md:static md:p-0 md:bg-transparent md:border-0 md:flex md:justify-end md:mt-6">
                     <button onClick={handleSubmit(onSubmit)} className="w-full md:w-auto bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg flex items-center justify-center gap-2">
                       <Save size={18}/> Salvar Alterações

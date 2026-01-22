@@ -1,3 +1,5 @@
+// src/types/index.ts
+
 // 1. Tipos Básicos
 export interface Service {
   id: string | number;
