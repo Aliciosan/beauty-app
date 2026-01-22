@@ -1,37 +1,42 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  /* Paleta de Cores DELLAS BEAUTY */
-  --color-rose-nude-bg: #fceae8;      /* Fundo principal claro */
-  --color-rose-accent-light: #fae1dd; /* Fundo para ícones/botões secundários */
-  --color-copper-gold: #c98a7d;       /* Cor primária (textos, ícones) */
-  --color-copper-gold-dark: #a87367;  /* Cor para hover ou destaque maior */
-  --color-copper-pop: #e69c8f;        /* Cor de destaque (botões, badges) */
+:root {
+  /* Variáveis de Cores (Compatível com Tailwind padrão) */
+  --color-rose-nude-bg: #FFF8F6;
+  --color-rose-accent-light: #fae1dd;
+  --color-copper-gold: #C68D7D;
+  --color-copper-gold-dark: #a87367;
+  --color-copper-pop: #e66c4f;
+
+  --foreground-rgb: 74, 74, 74;
 }
 
-/* Aplica a cor de fundo em todo o site */
 body {
-  background-color: var(--color-rose-nude-bg);
-  color: var(--color-copper-gold-dark);
-  font-family: var(--font-inter), sans-serif; /* Garante a fonte padrão */
+  color: #4A4A4A;
+  background: var(--color-rose-nude-bg);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Utilitário para esconder barra de rolagem (usado na lista de salões) */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+/* --- CORREÇÕES CRÍTICAS PARA MOBILE --- */
 
-/* Evita scroll lateral e remove comportamento de elástico no iOS */
+/* 1. Impede rolagem lateral indesejada */
 html, body {
-  overflow-x: hidden; /* Impede scroll lateral indesejado */
-  overscroll-behavior-y: none; /* Remove efeito elástico no topo/fundo da página */
+  overflow-x: hidden;
+  max-width: 100vw;
+  overscroll-behavior-y: none; /* Remove efeito elástico no topo/fundo (iOS) */
+  position: relative;
 }
 
-/* Esconde a barra de rolagem mas mantém o scroll */
+/* 2. Evita que o iPhone dê zoom automático ao clicar nos inputs */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* 3. Esconde a barra de rolagem visualmente, mas mantém o scroll funcionando */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
@@ -39,12 +44,3 @@ html, body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
-/* Ajuste para inputs não darem zoom automático no iPhone ao clicar */
-@media screen and (max-width: 768px) {
-  input, select, textarea {
-    font-size: 16px !important;
-  }
-}
-
-
